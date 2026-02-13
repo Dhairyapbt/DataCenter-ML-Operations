@@ -1,0 +1,17 @@
+services:
+  ml-api:
+    image: datacenter-ml-api
+    container_name: datacenter-ml-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./monitoring:/app/monitoring
+    restart: always
+
+  monitoring:
+    image: python:3.9-slim
+    container_name: monitoring-service
+    volumes:
+      - ./monitoring:/monitoring
+    command: tail -f /dev/null
+
